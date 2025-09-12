@@ -1,0 +1,22 @@
+# .gitignore
+
+# Python cache and bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+
+# Environment/config files
+.env
+.flaskenv
+
+# SQLite database
+*.db
+
+# Flask instance folder (if used)
+instance/
+
+# Mypy and other tool caches
+.mypy_cache/
