@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Helpline</title>
+        {% else %}
+        <title>Welcome to Helpline System</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>
+            <a href="{{ url_for('index') }}">Helpine Centre</a>
+            {% if current_user.is_anonymous %}
+            <a></a>
+            {% else %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
+
+        </div>
+        
+        {% block content %}{% endblock %}
+    </body>
+</html>
