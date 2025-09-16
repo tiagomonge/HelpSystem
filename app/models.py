@@ -1,11 +1,13 @@
 from datetime import datetime, timezone
 from werkzeug.security import generate_password_hash, check_password_hash
 from typing import Optional
+from flask_login import UserMixin
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 from app import db
+from app import login
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
     name: so.Mapped[str] = so.mapped_column(sa.String(64), index=True)
     email: so.Mapped[Optional[str]] = so.mapped_column(sa.String(120), unique=True)
@@ -15,13 +17,17 @@ class User(db.Model):
     
     # Test function for user
     def __repr__(self):
-        return '<User {}>'.format(self.nome)
+        return '<User {}>'.format(self.name)
     
     def set_password(self, password):
-        self.password_hash = generate_password_hash()  
+        self.password = generate_password_hash(password)  
 
     def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+        return check_password_hash(self.password, password)
+
+@login.user_loader
+def load_user(id):
+    return db.session.get(User, int(id))
     
 
 class Ticket(db.Model):
@@ -43,3 +49,4 @@ class Response(db.Model):
 class Category(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
     name: so.Mapped[str] = so.mapped_column(sa.String(64), unique=True)
+    description: so.Mapped[Optional[str]] = so.mapped_column(sa.String(200))

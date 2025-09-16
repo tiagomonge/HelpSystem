@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+        <h1>Hello {{current_user.name}}</h1>
+        {% if current_user.type == "admin" %}
+                <p>Only Admin can see this</p>
+        {% endif %}
+{% endblock %}
