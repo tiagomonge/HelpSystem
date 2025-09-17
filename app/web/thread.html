@@ -8,6 +8,40 @@
 table, th, td {
   border:1px solid black;
 }
+.dropbtn {
+  background-color: #045174;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #045174;}
 </style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,17 +56,45 @@ table, th, td {
 <div>
 <table style="width:100%">
   <tr>
-    <th>Subject</th>
+    <th colspan="5" align=left>Tópico</th>
   </tr>
   <tr>
-    <th>Category:</th>
-	<th>Status:</th>
-	<th>Priority:</th>
-	<th>Author:</th>
-	<th>Date created:</th>
+    <th>
+		<div class="dropdown">
+			<button class="dropbtn">Categoria</button>
+				<div class="dropdown-content">
+					<a href="#">Recursos humanos</a>
+					<a href="#">Tecnologia</a>
+					<a href="#">Finanças</a>
+				</div>
+		</div>
+	</th>
+	<th>
+		<div class="dropdown">
+			<button class="dropbtn">Status</button>
+				<div class="dropdown-content">
+					<a href="#">Aberto</a>
+					<a href="#">Respondido</a>
+					<a href="#">Resolvido</a>
+				</div>
+		</div>
+	</th>
+	<th>
+		<div class="dropdown">
+			<button class="dropbtn">Prioridade</button>
+				<div class="dropdown-content">
+					<a href="#">Baixa</a>
+					<a href="#">Média</a>
+					<a href="#">Alta</a>
+				</div>
+		</div>
+	</th>
+	<th>Autor:</th>
+	<th>Data criado:</th>
   </tr>
   <tr>
-    <td colspan="5"><br></td>
+    <td colspan="1" align=left>Autor: <br> Data da resposta:   </td>
+	<td colspan="4" align=left>Resposta</td>
   </tr>
   
 </table>
@@ -40,7 +102,7 @@ table, th, td {
   <input type="text" id="message" name="message">
   <input type="submit" onclick="4.png" value="Submit">
 </form>
-<p>Page <a href="url">1</a> <a href="url">2</a><a href="url"> <i class="fa fa-angle-right" style="font-size:24px"></i></a> <a href="url"><i class="fa fa-angle-double-right" style="font-size:24px"></i></a></p>
+<p>Página <a href="url">1</a> <a href="url">2</a><a href="url"> <i class="fa fa-angle-right" style="font-size:24px"></i></a> <a href="url"><i class="fa fa-angle-double-right" style="font-size:24px"></i></a></p>
 </div>
 
 </body>
