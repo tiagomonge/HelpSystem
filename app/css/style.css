@@ -30,29 +30,50 @@ form {
 }
 
 input[type="text"] {
-	color:#f8dcbf;
-	background-color:#bfbfbf;
+	width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    background-color: #c9c9c9;
+    color: #ffffff;
+    box-sizing: border-box;
+    outline: none;
 }
 
 input[type="submit"] {
-	color:#f8dcbf;
-    background-color:#15475d;
+	background-color: #045174; /* Cor azul dos botões */
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    width: 200px;
+    transition: background-color 0.3s ease;
+}
+
+.Edit ,.Delete, .New {
+	background-color: #f8dcbf;
+    border: none;
+    padding: 15px 30px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    width: 200px;
+    transition: background-color 0.3s ease;
 }
 
 table, th, td {
-	color:#f8dcbf;
+	background-color: #045174;
+    color:#f8dcbf;
     padding: 16px;
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
     border:1px solid black;
-}
-
-table, th, td {
-  border:1px solid black;
-}
-
-th {
-	background-color: #045174;
 }
 
 
