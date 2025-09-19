@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-        
-        <a href="{{ url_for('login') }}">Login</a>
-        <a href="{{ url_for('register') }}">Register</a>
+<div class="landing-page">
+    <img class="landing-image" src="{{ url_for('static', filename='images/helpline_logo.png') }}"
+        alt="Landing Page Image">
+    <div>
+        <a class="cat-btn" href="{{ url_for('login') }}">Login</a>
+        <a class="cat-btn" href="{{ url_for('register') }}">Register</a>
+
+    </div>
+
+</div>
+
 {% endblock %}

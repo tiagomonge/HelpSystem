@@ -1,0 +1,200 @@
+body {
+    background-color: #0f2336;
+}
+
+h1,
+h2,
+h3,
+table {
+    color: #f8dcbf;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+p,
+a,
+li,
+td,
+span,
+label {
+    color: #f8dcbf;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+
+    width: 100%;
+    margin: 20px auto;
+
+}
+
+table th,
+td {
+    background-color: #045174;
+    color: #f8dcbf;
+    padding: 16px;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+table th a {
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+table td {
+    background-color: #5d6263;
+
+}
+
+form {
+    border-radius: 5px;
+    padding: 20px;
+    margin: 0 40%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    font-weight: 500;
+    border-radius: 7px;
+    background-color: #c9c9c9;
+    color: #045174;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.cat-btn,
+.new-ticket-btn {
+    background-color: #045174;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    margin: 10px 5px;
+    border-radius: 7px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.cat-btn:hover {
+    background-color: #033a4a;
+}
+
+.new-ticket-btn {
+    background-color: #c9c9c9;
+    color: #000000;
+    float: right;
+}
+
+.new-ticket-btn:hover {
+    background-color: #a6a6a6;
+}
+
+input[type="submit"] {
+    background-color: #045174;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    margin: 10px 0;
+    border-radius: 7px;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    width: 200px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #033a4a;
+}
+
+.table-btn {
+    background-color: #f8dcbf;
+    border: none;
+    padding: 5px;
+    margin: 10px;
+
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+
+    width: 200px;
+    transition: background-color 0.3s ease;
+    color: #0f2336
+}
+
+.table-btn:hover {
+    background-color: #d4bfae;
+    color: #0f2336
+}
+
+.table-slim {
+    width: 300px;
+}
+
+input[type="submit"] {
+    color: #f8dcbf;
+    background-color: #15475d;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header_elements {
+    display: flex;
+    align-items: center;
+}
+
+.header-home-btn {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f8dcbf;
+    text-decoration: none;
+    margin-right: auto;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header-cur-user {
+    margin-right: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header_banner_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_banner_container h1 {
+    margin-top: auto;
+}
+
+.header_banner {
+
+    max-height: 200px;
+}
+
+.flash-message {
+    background-color: #045174;
+    color: #f8dcbf;
+    padding: 10px;
+    margin: 20px auto;
+    width: 50%;
+    text-align: center;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.landing-page {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.centre-this {
+    text-align: center;
+}

@@ -1,0 +1,7 @@
+<tr>
+    <td>{{ cat.name }}</td>
+    <td class="table-slim">
+        <a class="table-btn" href="{{ url_for('admin', action='edit_cat', action_id=cat.id)}}">Edit</a>
+        <a class="table-btn" href="{{ url_for('admin', action='del_cat', action_id=cat.id)}}">Delete</a>
+    </td>
+</tr>

@@ -1,10 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 import sqlalchemy as sa
 from app import db
-from app.models import User
-
+from app.models import User, Category
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired()])
@@ -29,8 +28,43 @@ class RegistrationForm(FlaskForm):
         
 
 class TicketForm(FlaskForm):
-    title = StringField('Titulo', validators=[DataRequired(), Length(min=1, max=140)])
-    category_id = StringField('Category ID', validators=[DataRequired()])
+    title = StringField('Title', validators=[DataRequired(), Length(min=1, max=140)])
+    category = SelectField("Category", choices=[], coerce=int) 
     description = TextAreaField('Please add your query or problem.', validators=[
         DataRequired(), Length(min=1, max=140)])
     submit = SubmitField('Submit')
+
+
+class ResponseForm(FlaskForm):
+    content = TextAreaField('Response', validators=[DataRequired(), Length(min=1, max=500)])
+    submit = SubmitField('Submit')
+
+
+class PriorityForm(FlaskForm):
+    submit = SubmitField('Set Priority')
+
+class AddCategoryForm(FlaskForm):
+    name = StringField('Category Name', validators=[DataRequired(), Length(min=1, max=50)])
+    submit_add = SubmitField('Add Category')
+
+    def validate_name(self, field):
+        category = db.session.scalar(sa.select(Category).where(
+            Category.name == field.data))
+        if category is not None:
+            raise ValidationError('Please use a different category name.')
+
+class EditCategoryForm(FlaskForm):
+    name = StringField('Category Name to Edit', validators=[DataRequired(), Length(min=1, max=50)])
+    submit_edit = SubmitField('Update Category')
+
+    def validate_name(self, field):
+        category = db.session.scalar(sa.select(Category).where(
+            Category.name == field.data))
+        if category is not None:
+            raise ValidationError('Please use a different category name.')
+
+class DeleteCategoryForm(FlaskForm):
+    submit_del = SubmitField('Confirm Delete')
+
+class MarkResolvedForm(FlaskForm):
+    submit_resolved = SubmitField('Mark as resolved')
