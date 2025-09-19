@@ -1,7 +1,72 @@
 {% extends "base.html" %}
 {% block content %}
-        <h1>Hello {{current_user.name}}</h1>
-        {% if current_user.type == "admin" %}
-                <p>Only Admin can see this</p>
+
+{% include 'banner.html' %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="flash-message">{{ message }}</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
+<div>
+        {% if has_response %}
+        <p>You have responses to your tickets!</p>
         {% endif %}
+</div>
+<div>
+        {% for cat in categories %}
+        <a class="cat-btn" href="{{ url_for('main', category=cat.id)}}">{{ cat.name }}</a>
+        {% endfor %}
+
+        <a class="new-ticket-btn" href="{{ url_for('ticket') }}">+ New Ticket</a>
+</div>
+<div>
+        <table>
+                <tr>
+                        <th>Subject</th>
+                        <th>Category {% if current_user.type == "admin" %}<a href="{{ url_for('admin')}}">Edit
+                                        Category</a>{% endif %}</th>
+                        <th>Status</th>
+                        <th>Priority
+
+                                {% if priority == 1 %}<a href="{{ url_for('main')}}">-</a>
+                                {% else %}<a href="{{ url_for('main', priority='1')}}">&#129035;</a>
+                                {% endif %}
+                        </th>
+                        <th>Date created
+                                {% if date_direction == 'asc' %} <a href="{{ url_for('main')}}">&#129033;</a>
+                                {% else %} <a href="{{ url_for('main', date='asc')}}">&#129035;</a>
+                                {% endif %}
+                        </th>
+                        <th>Author</th>
+                </tr>
+                {% for ticket in tickets %}
+                {% include '_ticket.html' %}
+                {% endfor %}
+        </table>
+        <div>
+                <p>Page
+                        {% if prev_url %}
+                        <a href="{{ prev_url }}">&lt;</a>
+                        {% endif %}
+                        {% for page_num in range(1, num_pages + 1) %}
+
+                        {% if page_num == cur_page %}
+                        <strong>{{ page_num }}</strong>
+                        {% else %}
+                        <a href="{{ url_for('main', page=page_num) }}">{{ page_num }}</a>
+                        {% endif %}
+                        {% endfor %}
+                        {% if next_url %}
+                        <a href="{{ next_url }}">&gt;</a>
+                        {% endif %}
+                </p>
+        </div>
+</div>
+
+
 {% endblock %}

@@ -1,0 +1,14 @@
+<tr>
+    <td><a href="{{ url_for('thread', id=ticket.id) }}">{{ ticket.title }}</a>
+    </td>
+    <td>{{ ticket.category.name }}</td>
+    <td>{{ticket.status|capitalize }}</td>
+    <td>{% if ticket.priority == 1%}
+        High
+        {% else %}
+        Normal
+        {% endif %}
+    </td>
+    <td>{{ ticket.date_created|to_gmt }}</td>
+    <td>{{ ticket.author.name }}</td>
+</tr>

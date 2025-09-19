@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+{% include 'banner.html' %}
+<div>
+    {% if owner %}
+    <form action="{{ url_for('thread', id=ticket.id) }}" method="post">
+        {{ resolved_form.hidden_tag() }}
+        {{ resolved_form.submit_resolved() }}
+    </form>
+    {% endif %}
+
+    <table style="width:100%">
+        <tr>
+            <th colspan="5">Subject: {{ ticket.title }}</th>
+        </tr>
+        <tr>
+            <th>Category:</th>
+            <th>Status:</th>
+            <th>Priority:</th>
+            <th>Author:</th>
+            <th>Date created:</th>
+        </tr>
+        <tr>
+            <td>{{ category.name }}</td>
+            <td>{{ ticket.status }}</td>
+            <td>{% if ticket.priority == 1%}
+                High
+                {% else %}
+                Normal
+                {% endif %}</td>
+            <td>{{ author.name }}</td>
+            <td>{{ ticket.date_created|to_gmt }}</td>
+        <tr>
+            {% for response in responses %}
+            {% include '_response.html' %}
+            {% endfor %}
+        </tr>
+
+    </table>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="flash-message">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.content.label}}
+            {{ form.content(size=64) }}<br>
+            {% for error in form.content.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+</div>
+{% if current_user.type == "admin" %}
+<p>Only Admin can see this</p>
+
+
+<form action="{{ url_for('toggle_priority', id=ticket.id) }}" method="post">
+    {{ form.hidden_tag() }}
+    <button type="submit">
+        {% if ticket.priority %}
+        Unmark Priority
+        {% else %}
+        Mark as Priority
+        {% endif %}
+    </button>
+</form>
+
+{% endif %}
+
+{% endblock %}

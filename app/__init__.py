@@ -15,7 +15,10 @@ from app import models
 
 with app.app_context():
     db.create_all()
-
+    if not models.Category.query.first(): 
+        default_categories = ["Human Resources", "Technology", "Financial"]
+        db.session.bulk_save_objects([models.Category(name=cat) for cat in default_categories])
+        db.session.commit()
 
 
 from app import routes, errors

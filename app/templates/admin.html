@@ -1,7 +1,68 @@
 {% extends "base.html" %}
 {% block content %}
-        <h1>Hello {{current_user.name}}</h1>
 
-        <p>This page is only for admins</p>
+{% include 'banner.html' %}
+
+<p>This page is only for admins</p>
+
+<body>
+
+        <h2>Help line</h2>
+
+        <table>
+                <tr>
+                        <th colspan="2">Category</th>
+                </tr>{% for cat in categories %}
+
+                {% include '_category.html' %}
+                {% endfor %}
+
+                <tr>
+                        <td></td>
+                        <td><a class="table-btn" href="{{ url_for('admin', action='add_cat')}}" class="new">+ New</a>
+                        </td>
+                </tr>
+        </table>
+
+        {% if action == "add_cat" %}
+        <form method="post">
+                {{ add_cat_form.hidden_tag() }}
+                <p>
+                        {{ add_cat_form.name.label }}<br>
+                        {{ add_cat_form.name(size=30) }}
+                </p>
+                {% for error in add_cat_form.name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+                <p>{{ add_cat_form.submit_add() }}</p>
+        </form>
+        {% elif action == "edit_cat" %}
+        <form method="post">
+                {{ edit_cat_form.hidden_tag() }}
+                <p>
+                        {{ edit_cat_form.name.label }}<br>
+                        {{ edit_cat_form.name(size=30) }}
+                </p>
+                {% for error in edit_cat_form.name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+                <p>{{ edit_cat_form.submit_edit() }}</p>
+        </form>
+        {% elif action == "del_cat" %}
+        <form method="post">
+                {{ del_cat_form.hidden_tag() }}
+                <p>Are you sure you want to delete this category?</p>
+                <p>{{ del_cat_form.submit_del() }}</p>
+        </form>
+        {% endif %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash-message">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+</body>
 
 {% endblock %}

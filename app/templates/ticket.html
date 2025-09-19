@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+{% include 'banner.html' %}
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.title.label }}<br>
+        {{ form.title(size=30) }}
+    </p>
+    <p>
+        {{ form.category.label }}<br>
+        {{ form.category() }}
+    </p>
+    <p>
+        {{ form.description.label }}<br>
+        {{ form.description() }}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+{% endblock %}
